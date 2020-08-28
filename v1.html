@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Websocket</title>
+</head>
+<body>
+<div id="app">
+    <ul>
+        <li v-for="goods in list">
+            商品ID：{{goods.goods_id}} - 商品名：{{goods.goods_name}} - 商品价格：{{goods.goods_price}}
+        </li>
+    </ul>
+</div>
+<script src="/js/vue.js"></script>
+<script src="/js/axios.min.js"></script>
+<script>
+    new Vue({
+        el:"#app",
+        data(){
+            return{
+                list:null
+            }
+
+        },
+        mounted () {
+            axios
+                .get('http://express.1910.com/goods/test')
+                .then(response => (this.list = response.data))
+        }
+    })
+
+    </script>
+</body>
+</html>
